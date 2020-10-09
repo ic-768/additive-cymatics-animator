@@ -14,7 +14,7 @@ With options to select:
 
 
 #### Screenshot
-![Screenshot software](Images/Screenshot.png)
+![Screenshot software](Images/Screenshot from 2020-10-10 01-41-54.png)
 
 ## Download
 * [Version X.Y](https://github.com/username/sw-name/archive/master.zip)
