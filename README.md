@@ -14,7 +14,7 @@ With options to select:
 
 
 #### Screenshot
-![Screenshot software](https://imgur.com/a/k16ZaOI)
+![Screenshot software](Images/Screenshot.png)
 
 ## Download
 * [Version X.Y](https://github.com/username/sw-name/archive/master.zip)
