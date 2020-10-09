@@ -1,7 +1,5 @@
 import matplotlib
 matplotlib.use("Agg")
-from tkinter import filedialog
-from tkinter import *
 import math as m
 import subprocess
 import numpy as np
