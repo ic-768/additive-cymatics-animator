@@ -3,7 +3,6 @@ import subprocess
 import numpy as np
 from itertools import zip_longest
 
-directory = "./media"
 
 def makeSineSound(list,order,freq):  #Data for single sine audio
     '''Takes linear data, Nth harmonic order, and base frequency. 
@@ -14,7 +13,7 @@ def makeSineSound(list,order,freq):  #Data for single sine audio
         # audio needs 2*freq*pi to be correct. This breaks video
     return sinList
 
-def waveSound(freq,data,harmonicSeries,numHarms,FS): 
+def waveSound(directory,freq,data,harmonicSeries,numHarms,FS): 
     '''Builds audio file and writes to memory when finished''' 
     def waveform(list,targetHarm,harmMultiplier): #Returns signal that gradually morphs final form
         i=0
@@ -35,7 +34,7 @@ def waveSound(freq,data,harmonicSeries,numHarms,FS):
     sf.write(f'{directory}/waves.wav', harmonicVec, FS)
     print('WRITING AUDIO')
 
-def addAudio2Video():
+def addAudio2Video(directory):
     cmd = f'ffmpeg -y -i {directory}/waves.wav -r 30 -i {directory}/waves.mp4 -filter:a aresample=async=1 -c:a libvorbis -c:v copy {directory}/output.mp4'
     subprocess.call(cmd, shell=True)                         
     print('Muxing Done')

@@ -3,9 +3,9 @@ from components import waveAudio, waveVideo
 
 directory = "./media"
 
-FPS=2  #How many sine waves added per second
+FPS=3  #How many sine waves added per second
 harmonicSeries = "EVEN" #either "ODD" (square wave) or "EVEN"(saw-tooth)
-numHarms=25  #Includes Fundamental
+numHarms=30  #Includes Fundamental
 freq=50   #Fundamental Frequency
 
 FS=44100
@@ -15,6 +15,6 @@ data=np.linspace(0.,seconds,int(FS*seconds))
 xZoom = 25
 yZoom = 2.0
 
-waveVideo.waveAnimation(harmonicSeries,numHarms,FPS) 
-waveAudio.waveSound(freq,data,harmonicSeries,numHarms,FS)
-waveAudio.addAudio2Video()
+waveVideo.waveAnimation(directory,harmonicSeries,numHarms,FPS) 
+waveAudio.waveSound(directory,freq,data,harmonicSeries,numHarms,FS)
+waveAudio.addAudio2Video(directory)

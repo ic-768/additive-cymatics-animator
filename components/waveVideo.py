@@ -4,7 +4,6 @@ import moviepy.editor as mp
 import matplotlib.pyplot as plt
 import numpy as np
 
-directory = "./media"
 matplotlib.use("Agg") 
 
 def makeSineAnimation(list, order):     #Data used for video segment of a single sine wave
@@ -19,7 +18,7 @@ def makeSineAnimation(list, order):     #Data used for video segment of a single
     return sinList
 
 
-def waveAnimation(harmonicSeries,numHarms,FPS):
+def waveAnimation(directory,harmonicSeries,numHarms,FPS):
     '''Builds animation of gradual harmonic summation, and writes .gif and .mp4 files to target directory. (Audio is added to mp4 file at a later stage).
     Harmonic series is either "ODD" (square wave) or "BOTH" (sawtooth).
     FPS (frames/second) dictates how many sine waves will be added per second 
@@ -54,7 +53,6 @@ def waveAnimation(harmonicSeries,numHarms,FPS):
 
     time = np.arange(0, xZoom, resolution)
     fig = plt.figure(figsize=(12, 6))  # Animation details 
-
 
     ax1 = fig.add_subplot(211, xlim=(0, xZoom), ylim=(-yZoom, yZoom),facecolor="black")
     ax2 = fig.add_subplot(212, xlim=(0, xZoom), ylim=(-yZoom, yZoom),facecolor="black")
