@@ -16,8 +16,8 @@ With options to select:
 
 
 
-#### Screenshot
-![Screenshot software](Images/Screenshot from 2020-10-10 01-41-54.png)
+#### Sample output of a sawtooth with 30 harmonics (it's a gif, so no audio)
+![Sample](media/waves.gif)
 
 ## Usage
 To get started, ensure that you have python 3 installed.
