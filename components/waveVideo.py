@@ -1,3 +1,4 @@
+import math
 import matplotlib
 from matplotlib import animation,rc
 import moviepy.editor as mp
@@ -14,7 +15,7 @@ def makeSineAnimation(list, order):     #Data used for video segment of a single
     sinList=[]
     for num in list:
         # divide by order so that volume declines steadily with each harmonic. Vital for correct shape of wave
-        sinList.append(np.sin(order * num) / order)
+        sinList.append(math.sin(order * num) / order)
     return sinList
 
 
@@ -31,7 +32,7 @@ def waveAnimation(directory,harmonicSeries,numHarms,FPS):
         return lines,line
 
     def animate(i):
-        i = i % numHarms
+        i %= numHarms
         lines[i].set_data(time,harmonics[i])
         harmNumText.set_text(f"Harmonics: {i}")
         line.set_data(time, additions[i])  
@@ -46,10 +47,7 @@ def waveAnimation(directory,harmonicSeries,numHarms,FPS):
     rc('animation', html='html5')
 
     xZoom = 25
-    if harmonicSeries=="ODD": 
-        yZoom = 1.01
-    else:
-        yZoom = 2
+    yZoom=1.01 if harmonicSeries=="ODD" else 2
 
     time = np.arange(0, xZoom, resolution)
     fig = plt.figure(figsize=(12, 6))  # Animation details 
@@ -68,15 +66,9 @@ def waveAnimation(directory,harmonicSeries,numHarms,FPS):
     a.set_data(time, harmonics[0])
     lines.append(a)
 
-    if harmonicSeries== "ODD": #TODO both cases can be dried up into a single function
-        for i in range(2, numHarms + 2):  # Create fundamental and harmonics. 
-            harmonics.append(makeSineAnimation(time, i * 2 - 1))
-            additions.append( list(np.array(additions[i - 2] + np.array(harmonics[i - 1]))))  
-
-    else:
-        for i in range(2, numHarms + 2):  
-             harmonics.append(makeSineAnimation(time, i))
-             additions.append(list(np.array(additions[i - 2] + np.array(harmonics[i - 1]))))
+    for i in range(2,numHarms + 2):
+        harmonics.append(makeSineAnimation(time,i if harmonicSeries=="EVEN" else i*2-1))
+        additions.append(list(np.array(additions[i - 2] + np.array(harmonics[i - 1]))))  
              
         a.set_data(time, harmonics[i - 1])
         lines.append(a)

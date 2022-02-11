@@ -4,7 +4,7 @@ from components import waveAudio, waveVideo
 directory = "./media"
 
 FPS=3  #How many sine waves added per second
-harmonicSeries = "EVEN" #either "ODD" (square wave) or "EVEN"(saw-tooth)
+harmonicSeries = "ODD" #either "ODD" (square wave) or "EVEN"(saw-tooth)
 numHarms=30  #Includes Fundamental
 freq=50   #Fundamental Frequency
 
