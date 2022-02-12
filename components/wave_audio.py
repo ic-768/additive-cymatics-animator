@@ -1,5 +1,4 @@
 import subprocess
-import math
 import soundfile as sf
 import numpy as np
 from itertools import zip_longest
@@ -8,13 +7,7 @@ from itertools import zip_longest
 def make_sine_sound(linear_number_list, order, freq):  # Data for single sine audio
     """Takes linear data, Nth harmonic order, and base frequency.
     Produces list of sineWave samples for audio"""
-    sin_list = []
-    for (
-        num
-    ) in linear_number_list:  # audio needs 2*freq*pi to be correct. This breaks video
-        sin_list.append(math.sin(order * num * freq * 2 * math.pi) / order)
-
-    return sin_list
+    return np.sin(2 * np.pi * order * freq * linear_number_list) / order
 
 
 def wave_sound(directory, freq, data, harmonic_series, num_harms, FS):

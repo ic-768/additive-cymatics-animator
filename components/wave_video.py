@@ -1,4 +1,3 @@
-import math
 import matplotlib
 from matplotlib import animation, rc
 import moviepy.editor as mp
@@ -8,18 +7,12 @@ import numpy as np
 matplotlib.use("Agg")
 
 
-def make_sine_animation(
-    linear_number_list, order
-):  # Data used for video segment of a single sine wave
+def make_sine_animation(linear_number_list, order):
     """Takes linear list of values, and Nth harmonic order.
     Performs sine transformation on each value of list, to create sample data for Nth harmonic.
     For use in matplotlib video creation
     """
-    sin_list = []
-    for num in linear_number_list:
-        # divide by order so that volume declines steadily with each harmonic. Vital for correct shape of wave
-        sin_list.append(math.sin(order * num) / order)
-    return sin_list
+    return np.sin(order * linear_number_list) / order
 
 
 def wave_animation(directory, harmonic_series, num_harms, FPS):
@@ -57,12 +50,11 @@ def wave_animation(directory, harmonic_series, num_harms, FPS):
     time = np.arange(0, x_zoom, resolution)
     fig = plt.figure(figsize=(12, 6))  # Animation details
 
-    ax1 = fig.add_subplot(
-        211, xlim=(0, x_zoom), ylim=(-y_zoom, y_zoom), facecolor="black"
-    )
-    ax2 = fig.add_subplot(
-        212, xlim=(0, x_zoom), ylim=(-y_zoom, y_zoom), facecolor="black"
-    )
+    xlim = 0, x_zoom
+    ylim = -y_zoom, y_zoom
+
+    ax1 = fig.add_subplot(211, xlim=(xlim), ylim=(ylim), facecolor="black")
+    ax2 = fig.add_subplot(212, xlim=(xlim), ylim=(ylim), facecolor="black")
 
     harmonics = []  # values of harmonic
     additions = []  # sums
@@ -84,9 +76,7 @@ def wave_animation(directory, harmonic_series, num_harms, FPS):
         a.set_data(time, harmonics[i - 1])
         lines.append(a)
 
-    harm_num_text = ax1.text(
-        0.0, 1.11, "", transform=ax1.transAxes, fontsize=20
-    )  # Text
+    harm_num_text = ax1.text(0.0, 1.11, "", transform=ax1.transAxes, fontsize=20)
     (line,) = ax1.plot([], [], lw=2)
     anim = animation.FuncAnimation(
         fig,

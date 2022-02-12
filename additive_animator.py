@@ -3,10 +3,10 @@ from components import wave_audio, wave_video
 
 directory = "./media"
 
-FPS = 1  # How many sine waves added per second
+FPS = 5  # How many sine waves added per second
 harmonic_series = "EVEN"  # either "ODD" (square wave) or "EVEN"(saw-tooth)
-num_harms = 10  # Includes Fundamental
-freq = 150  # Fundamental Frequency
+num_harms = 30  # Includes Fundamental
+freq = 50  # Fundamental Frequency
 
 FS = 44100
 seconds = 1 / FPS  # Changes length of each individual makeSineSound()
