@@ -26,4 +26,3 @@ To get started, ensure that you have python 3 installed.
 - You can edit basic parameters in "additiveAnimator.py", such as the number of Harmonics, which Harmonic Series to use, fundamental frequency, etc.
 - Execute additiveAnimator.py with python3. Upon completion,the media folder will be populated.
 - Within the media folder, the file "output.mp4" now contains your audio-visual material.
-```$ git clone https://github.com/username/software-project.git
